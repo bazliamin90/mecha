@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Kad Karakter</title>
+    <style>
+	   #navbar {
+        display: flex;
+        justify-content: center;
+        background-color: lightgray;
+        padding: 10px;
+      }
+
+      .nav-item {
+        margin: 0 10px;
+        font-size: 18px;
+		font-family: courier new;
+		cursor: pointer;
+        text-decoration: none;
+      }
+	  
+	  .nav-item:hover {
+        background-color: red;
+      }
+	  
+      .images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .images img {
+        width: 13%;
+        height: auto;
+        margin: 2%;
+		border: 6px solid dodgerblue;
+		border-radius: 8px;
+		box-shadow: 10px 10px 5px gray;
+      }
+
+      #showImagesButton {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+  <nav id="navbar">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="index2.html" class="nav-item">Dice</a>
+    </nav>
+  <br>
+    <button id="showImagesButton"> Shuffle & Select 10 Cards </button>
+    <div id="imagesContainer" class="images"></div>
+
+    <script>
+      const images = [
+        "image1.jpg",
+        "image2.jpg",
+        "image3.jpg",
+        "image4.jpg",
+        "image5.jpg",
+        "image6.jpg",
+        "image7.jpg",
+        "image8.jpg",
+        "image9.jpg",
+		"image10.jpg",
+        "image11.jpg"
+      ];
+
+      const imagesContainer = document.getElementById("imagesContainer");
+      const showImagesButton = document.getElementById("showImagesButton");
+
+      showImagesButton.addEventListener("click", function() {
+        imagesContainer.innerHTML = "";
+        let randomImages = [];
+        while (randomImages.length < 10) {
+          let randomIndex = Math.floor(Math.random() * images.length);
+          if (!randomImages.includes(randomIndex)) {
+            randomImages.push(randomIndex);
+            let img = document.createElement("img");
+            img.src = images[randomIndex];
+            imagesContainer.appendChild(img);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
