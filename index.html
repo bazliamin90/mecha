@@ -19,7 +19,7 @@
       }
 	  
 	  .nav-item:hover {
-        background-color: red;
+        background-color: white;
       }
 	  
       .images {
@@ -51,8 +51,8 @@
     </nav>
   <br>
     <button id="showImagesButton"> Shuffle & Select 10 Cards </button>
-    <div id="imagesContainer" class="images"></div>
-
+    <div class="images">
+    </div>
     <script>
       const images = [
         "image1.jpg",
@@ -68,22 +68,29 @@
         "image11.jpg"
       ];
 
-      const imagesContainer = document.getElementById("imagesContainer");
       const showImagesButton = document.getElementById("showImagesButton");
+      const imagesContainer = document.querySelector(".images");
 
-      showImagesButton.addEventListener("click", function() {
+      showImagesButton.addEventListener("click", function () {
         imagesContainer.innerHTML = "";
-        let randomImages = [];
-        while (randomImages.length < 10) {
-          let randomIndex = Math.floor(Math.random() * images.length);
-          if (!randomImages.includes(randomIndex)) {
-            randomImages.push(randomIndex);
-            let img = document.createElement("img");
-            img.src = images[randomIndex];
-            imagesContainer.appendChild(img);
-          }
-        }
+        const randomImages = shuffle(images).slice(0, 10);
+        randomImages.forEach(function (image) {
+          const imgElement = document.createElement("img");
+          imgElement.src = image;
+          imgElement.addEventListener("click", function () {
+            imgElement.style.display = "none";
+          });
+          imagesContainer.appendChild(imgElement);
+        });
       });
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
     </script>
   </body>
 </html>
