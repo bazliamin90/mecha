@@ -29,8 +29,8 @@
 }
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   animation: shake 0.5s ease-in-out forwards;
 }
 
